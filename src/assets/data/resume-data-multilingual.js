@@ -19,7 +19,7 @@ export const resumeData = {
     phone: "0151-12704266",
     email: "ihebmrabet0@gmail.com",
     linkedin: "https://www.linkedin.com/in/iheb-mrabet",
-    profileImage: "/images/placeholders/profile.jpg"
+    profileImage: "/src/assets/images/profile.jpg"
   },
 
   about: {
@@ -72,7 +72,8 @@ export const resumeData = {
             de: "Verantwortlich für das technische Design und die Implementierung eines halbautomatischen Systems, bei dem ein Roboter das präzise Verbinden von Rohrkomponenten für nachfolgende Schweißprozesse durchführt."
           },
           technologies: ["ROS2", "KUKA", "Python", "CAD"],
-          image: "/images/placeholders/penelope.jpg"
+          image: "/images/placeholders/penelope.jpg",
+          video: "https://youtu.be/EKX9jiWIBXA?si=u3NobVZFzZc1CzPl"
         },
         {
           name: {
@@ -84,7 +85,10 @@ export const resumeData = {
             de: "Entwicklung eines umfassenden Steuerungssystems und Bewegungsalgorithmen in ROS2 für intuitive manuelle Steuerung von KUKA-Robotern. Verantwortlich für die vollständige Integration relevanter Sensoren und Aktoren sowie die Entwicklung der notwendigen Schnittstellen für reaktive und präzise Steuerung."
           },
           technologies: ["ROS2", "KUKA", "Python", "Sensors", "Motion Control"],
-          image: "/images/placeholders/robo-flex.jpg"
+          image: "/images/placeholders/robo-flex.jpg",
+          video: "https://youtu.be/hydjIPM7aWU",
+          url: "https://www.igp.fraunhofer.de/de/kompetenzfelder/-fabrik--und-arbeitsorganisation/flexrob.html",
+          journalArticle: "https://www.ostsee-zeitung.de/lokales/rostock/roboter-fuer-jeden-zweck-rostocker-fraunhofer-institut-erfindet-arbeitswelt-neu-L6DMPRUM7VG7PD3TO2E4G7UOEM.html"
         },
         {
           name: {
@@ -96,7 +100,7 @@ export const resumeData = {
             de: "Implementierung des übergeordneten Steuerungssystems zur Automatisierung des gesamten Fräsprozesses. Entwicklung eines robusten Datenaustauschalgorithmus, der nahtlose, echtzeitfähige Kommunikation zwischen dem KUKA-Roboter, einer nachgelagerten SPS, einer zentralen Datenbank und einer externen App gewährleistet."
           },
           technologies: ["KUKA", "PLC", "Database", "Real-time Communication", "Milling"],
-          image: "/images/placeholders/woodbot.jpg"
+          image: "/src/assets/images/Woodbot.jpg"
         }
       ]
     },
@@ -164,7 +168,8 @@ export const resumeData = {
             de: "Entwicklung einer intelligenten Weckeranwendung mit KI-gestützten Funktionen für Studenten. Das System nutzt maschinelles Lernen zur Optimierung der Aufwachzeiten basierend auf Schlafmustern und Prüfungsterminen."
           },
           technologies: ["Python", "Machine Learning", "Mobile App", "IoT"],
-          image: "/images/placeholders/exam-alarm.jpg"
+          image: "/src/assets/images/Wecker.jpg",
+          url: "https://pruefung-wecker.web.app"
         }
       ]
     }

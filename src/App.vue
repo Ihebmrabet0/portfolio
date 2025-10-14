@@ -4,9 +4,7 @@
     <nav class="navbar" :class="{ 'scrolled': isScrolled }">
       <div class="nav-container">
         <div class="nav-brand">
-          <a href="#hero" class="brand-link">
-            <span class="brand-name">Iheb Mrabet</span>
-          </a>
+
         </div>
         
         <div class="nav-menu" :class="{ 'active': mobileMenuOpen }">
@@ -21,13 +19,13 @@
             <div class="language-switcher">
               <LanguageDropdown />
             </div>
-            <a :href="`mailto:${personal.email}?subject=CV Request`" class="btn btn-resume">
+            <a :href="getResumeUrl()" target="_blank" class="btn btn-resume" :download="getResumeFilename()">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                 <polyline points="7,10 12,15 17,10"/>
                 <line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
-              Resume
+              {{ t('hero.downloadCV') }}
             </a>
           </div>
         </div>
@@ -141,7 +139,21 @@ const smoothScroll = (targetId) => {
       block: 'start'
     })
   }
+  closeMobileMenu()
 }
+
+// Get resume URL based on current language
+const getResumeUrl = () => {
+  const language = currentLanguage.value
+  return `/src/assets/data/CV ${language.toUpperCase()}.pdf`
+}
+
+// Get resume filename based on current language
+const getResumeFilename = () => {
+  const language = currentLanguage.value
+  return `Iheb_Mrabet_CV_${language.toUpperCase()}.pdf`
+}
+
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
@@ -183,7 +195,6 @@ onUnmounted(() => {
 
 .navbar.scrolled {
   background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -278,6 +289,7 @@ onUnmounted(() => {
   font-size: 0.9rem;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  white-space: nowrap;
 }
 
 .btn-resume:hover {

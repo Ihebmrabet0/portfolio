@@ -20,7 +20,6 @@
         :class="{ 'active': currentLanguage.code === lang.code }"
       >
         <span class="flag">{{ lang.flag }}</span>
-        <span class="lang-name">{{ lang.name }}</span>
         <svg v-if="currentLanguage.code === lang.code" class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
         </svg>
@@ -53,7 +52,7 @@ const selectLanguage = (langCode) => {
 const handleBlur = (event) => {
   // Close dropdown when clicking outside
   setTimeout(() => {
-    if (!event.currentTarget.contains(document.activeElement)) {
+    if (event.currentTarget && !event.currentTarget.contains(document.activeElement)) {
       isOpen.value = false
     }
   }, 100)

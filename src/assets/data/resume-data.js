@@ -10,7 +10,7 @@ export const resumeData = {
     phone: "0151-12704266",
     email: "ihebmrabet0@gmail.com",
     linkedin: "https://www.linkedin.com/in/iheb-mrabet",
-    profileImage: "/images/placeholders/profile.jpg"
+    profileImage: "/src/assets/images/profile.jpg"
   },
 
   about: {
@@ -36,7 +36,8 @@ export const resumeData = {
           name: "Penelope - Pipe Fitting System",
           description: "Responsible for the technical design and implementation of a semi-automatic system in which a robot performs the precise joining of pipe components for subsequent welding processes.",
           technologies: ["ROS2", "KUKA", "Python", "CAD"],
-          image: "/images/placeholders/penelope.jpg"
+          image: "/images/placeholders/penelope.jpg",
+          video: "https://youtu.be/EKX9jiWIBXA?si=u3NobVZFzZc1CzPl"
         },
         {
           name: "RoboFlex - Hand-held Control Device",
@@ -309,7 +310,7 @@ export const resumeData = {
       description: "Conception and development of a web app for automated notification of exam results",
       url: "https://pruefung-wecker.web.app",
       technologies: ["Vue.js", "Web App", "Automation", "Notifications"],
-      image: "/images/placeholders/exam-alarm.jpg",
+      image: "/src/assets/images/Wecker.jpg",
       featured: true
     },
     {

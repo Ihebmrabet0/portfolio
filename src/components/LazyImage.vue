@@ -1,18 +1,31 @@
 <template>
   <div 
     ref="containerRef"
-    class="lazy-image-container loaded"
+    class="lazy-image-container"
+    :class="{ 'loaded': isLoaded }"
   >
-    <div class="image-placeholder" :style="{ aspectRatio: aspectRatio }">
+    <div v-if="!isLoaded" class="image-placeholder" :style="{ aspectRatio: aspectRatio }">
       <div class="placeholder-content">
         <div class="placeholder-icon">📷</div>
         <div class="placeholder-text">{{ placeholderText }}</div>
       </div>
     </div>
+    <img 
+      v-else
+      :src="src" 
+      :alt="alt"
+      class="lazy-image fade-in"
+      :style="{ aspectRatio: aspectRatio }"
+      @load="onImageLoad"
+      @error="onImageError"
+    />
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted, watch } from 'vue'
+import { useIntersectionObserver } from '../composables/useIntersectionObserver'
+
 const props = defineProps({
   src: {
     type: String,
@@ -29,6 +42,44 @@ const props = defineProps({
   placeholderText: {
     type: String,
     default: 'Loading...'
+  }
+})
+
+const isLoaded = ref(false)
+const hasError = ref(false)
+
+// Use intersection observer to load image when it comes into view
+const { target: containerRef, hasIntersected } = useIntersectionObserver({
+  threshold: 0.1
+})
+
+const onImageLoad = () => {
+  isLoaded.value = true
+}
+
+const onImageError = () => {
+  hasError.value = true
+  console.error('Failed to load image:', props.src)
+}
+
+// Start loading when image comes into view
+onMounted(() => {
+  if (hasIntersected.value) {
+    // Image should start loading immediately
+    const img = new Image()
+    img.onload = onImageLoad
+    img.onerror = onImageError
+    img.src = props.src
+  }
+})
+
+// Watch for intersection changes
+watch(hasIntersected, (intersected) => {
+  if (intersected && !isLoaded.value && !hasError.value) {
+    const img = new Image()
+    img.onload = onImageLoad
+    img.onerror = onImageError
+    img.src = props.src
   }
 })
 </script>
@@ -72,6 +123,10 @@ const props = defineProps({
 }
 
 .lazy-image.fade-in {
+  opacity: 1;
+}
+
+.lazy-image-container.loaded .lazy-image {
   opacity: 1;
 }
 

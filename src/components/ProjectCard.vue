@@ -1,13 +1,22 @@
 <template>
   <div class="project-card animate">
     <div class="project-image">
+      <!-- Show YouTube video if available, otherwise show image -->
+      <YouTubeVideo
+        v-if="project.video"
+        :video-id="project.video"
+        :title="getLocalizedContent(project.name)"
+        :autoplay="true"
+        :muted="true"
+      />
       <LazyImage
+        v-else
         :src="project.image"
         :alt="getLocalizedContent(project.name)"
         aspect-ratio="16/9"
         :placeholder-text="getLocalizedContent(project.name)"
       />
-      <div class="project-overlay">
+      <div class="project-overlay" v-if="!project.video">
         <div class="project-links">
           <a v-if="project.url" :href="project.url" target="_blank" class="project-link">
             <span>{{ t('common.viewProject') }}</span>
@@ -15,7 +24,41 @@
               <path d="M7 17L17 7M17 7H7M17 7V17"/>
             </svg>
           </a>
+          <a v-if="project.projectDetails" :href="project.projectDetails" target="_blank" class="project-link">
+            <span>Project Details</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
+          <a v-if="project.journalArticle" :href="project.journalArticle" target="_blank" class="project-link">
+            <span>Journal Article</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
         </div>
+      </div>
+      
+      <!-- Links for projects with videos - show below the video -->
+      <div class="project-links-below" v-if="project.video && (project.url || project.projectDetails || project.journalArticle)">
+        <a v-if="project.url" :href="project.url" target="_blank" class="project-link">
+          <span>{{ t('common.viewProject') }}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
+        <a v-if="project.projectDetails" :href="project.projectDetails" target="_blank" class="project-link">
+          <span>Project Details</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
+        <a v-if="project.journalArticle" :href="project.journalArticle" target="_blank" class="project-link">
+          <span>Journal Article</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </div>
     </div>
     
@@ -40,6 +83,7 @@
 import { useIntersectionObserver } from '../composables/useIntersectionObserver'
 import { useLanguage } from '../composables/useLanguage'
 import LazyImage from './LazyImage.vue'
+import YouTubeVideo from './YouTubeVideo.vue'
 
 const props = defineProps({
   project: {
@@ -52,6 +96,21 @@ const { t, getLocalizedContent } = useLanguage()
 const { target: cardRef, hasIntersected } = useIntersectionObserver({
   threshold: 0.2
 })
+
+// Debug: Log project data for Penelope
+const isPenelopeProject = () => {
+  if (typeof props.project.name === 'string') {
+    return props.project.name.includes('Penelope')
+  } else if (typeof props.project.name === 'object' && props.project.name) {
+    return Object.values(props.project.name).some(name => name.includes('Penelope'))
+  }
+  return false
+}
+
+if (isPenelopeProject()) {
+  console.log('Penelope project data:', props.project)
+  console.log('Has video:', !!props.project.video)
+}
 </script>
 
 <style scoped>
@@ -101,6 +160,16 @@ const { target: cardRef, hasIntersected } = useIntersectionObserver({
 .project-links {
   display: flex;
   gap: 1rem;
+}
+
+.project-links-below {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  justify-content: center;
 }
 
 .project-link {

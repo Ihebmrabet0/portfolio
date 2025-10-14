@@ -53,7 +53,10 @@ const featuredProjects = computed(() => {
           description: project.description,
           technologies: project.technologies,
           image: project.image,
-          url: project.url || null
+          url: project.url || null,
+          video: project.video || null,
+          projectDetails: project.projectDetails || null,
+          journalArticle: project.journalArticle || null
         })
       })
     }
@@ -68,9 +71,25 @@ const featuredProjects = computed(() => {
         description: project.description,
         technologies: project.technologies,
         image: project.image,
-        url: project.url || null
+        url: project.url || null,
+        video: project.video || null,
+        projectDetails: project.projectDetails || null,
+        journalArticle: project.journalArticle || null
       })
     })
+  }
+  
+  // Debug: Log Penelope project specifically
+  const penelopeProject = projects.find(p => {
+    if (typeof p.name === 'string') {
+      return p.name.includes('Penelope')
+    } else if (typeof p.name === 'object' && p.name) {
+      return Object.values(p.name).some(name => name.includes('Penelope'))
+    }
+    return false
+  })
+  if (penelopeProject) {
+    console.log('Penelope project found:', penelopeProject)
   }
   
   // Return first 6 projects
