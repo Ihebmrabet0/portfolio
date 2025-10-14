@@ -41,8 +41,9 @@ import { useIntersectionObserver } from '../composables/useIntersectionObserver'
 import { useLanguage } from '../composables/useLanguage'
 import LazyImage from './LazyImage.vue'
 import { resumeData } from '../assets/data/resume-data-multilingual'
+import profileImage from '../assets/images/profile.jpg'
 
-const personal = resumeData.personal
+const personal = { ...resumeData.personal, profileImage }
 const { t, getLocalizedContent } = useLanguage()
 
 const { target: heroRef, hasIntersected } = useIntersectionObserver({

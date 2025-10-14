@@ -142,10 +142,14 @@ const smoothScroll = (targetId) => {
   closeMobileMenu()
 }
 
+// Import CV files as modules for proper Vite handling
+import cvDE from './assets/data/CV DE.pdf'
+import cvEN from './assets/data/CV EN.pdf'
+
 // Get resume URL based on current language
 const getResumeUrl = () => {
   const language = currentLanguage.value
-  return `/src/assets/data/CV ${language.toUpperCase()}.pdf`
+  return language === 'de' ? cvDE : cvEN
 }
 
 // Get resume filename based on current language

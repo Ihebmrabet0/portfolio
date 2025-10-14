@@ -1,3 +1,6 @@
+import weckerImage from '../images/Wecker.jpg'
+import woodbotImage from '../images/Woodbot.jpg'
+
 export const resumeData = {
   personal: {
     name: "Iheb Mrabet",
@@ -100,7 +103,7 @@ export const resumeData = {
             de: "Implementierung des übergeordneten Steuerungssystems zur Automatisierung des gesamten Fräsprozesses. Entwicklung eines robusten Datenaustauschalgorithmus, der nahtlose, echtzeitfähige Kommunikation zwischen dem KUKA-Roboter, einer nachgelagerten SPS, einer zentralen Datenbank und einer externen App gewährleistet."
           },
           technologies: ["KUKA", "PLC", "Database", "Real-time Communication", "Milling"],
-          image: "/src/assets/images/Woodbot.jpg"
+          image: woodbotImage
         }
       ]
     },
@@ -168,7 +171,7 @@ export const resumeData = {
             de: "Entwicklung einer intelligenten Weckeranwendung mit KI-gestützten Funktionen für Studenten. Das System nutzt maschinelles Lernen zur Optimierung der Aufwachzeiten basierend auf Schlafmustern und Prüfungsterminen."
           },
           technologies: ["Python", "Machine Learning", "Mobile App", "IoT"],
-          image: "/src/assets/images/Wecker.jpg",
+          image: weckerImage,
           url: "https://pruefung-wecker.web.app"
         }
       ]

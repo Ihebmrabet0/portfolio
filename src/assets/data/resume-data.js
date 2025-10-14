@@ -1,3 +1,5 @@
+import woodbotImage from '../images/Woodbot.jpg'
+
 export const resumeData = {
   personal: {
     name: "Iheb Mrabet",
@@ -36,20 +38,20 @@ export const resumeData = {
           name: "Penelope - Pipe Fitting System",
           description: "Responsible for the technical design and implementation of a semi-automatic system in which a robot performs the precise joining of pipe components for subsequent welding processes.",
           technologies: ["ROS2", "KUKA", "Python", "CAD"],
-          image: "/images/placeholders/penelope.jpg",
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=Penelope+Pipe+Fitting",
           video: "https://youtu.be/EKX9jiWIBXA?si=u3NobVZFzZc1CzPl"
         },
         {
           name: "RoboFlex - Hand-held Control Device",
           description: "Development of a comprehensive control system and motion algorithms in ROS2 for intuitive manual control of KUKA robots. Responsible for the complete integration of relevant sensors and actuators as well as the development of the necessary interfaces to ensure responsive and precise control.",
           technologies: ["ROS2", "KUKA", "Python", "Sensors", "Motion Control"],
-          image: "/images/placeholders/robo-flex.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=RoboFlex+Control"
         },
         {
           name: "Woodbot - 3D Robotic Milling Machine",
           description: "Implementation of the higher-level control system to automate the entire milling process. Development of a robust data exchange algorithm that ensures seamless, real-time communication between the KUKA robot, a downstream PLC, a central database, and an external app.",
           technologies: ["KUKA", "PLC", "Database", "Real-time Communication", "Milling"],
-          image: "/images/placeholders/woodbot.jpg"
+          image: woodbotImage
         }
       ]
     },
@@ -65,7 +67,7 @@ export const resumeData = {
           name: "6D Pose Estimation AI Model",
           description: "Development of an AI model for 6D pose estimation using RGB-D measurement data for custom Objects",
           technologies: ["PyTorch", "Computer Vision", "RGB-D", "AI/ML", "Python"],
-          image: "/images/placeholders/pose-estimation.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=Pose+Estimation+AI"
         }
       ]
     },
@@ -81,13 +83,13 @@ export const resumeData = {
           name: "AI Solutions for Marketing",
           description: "Development and implementation of AI solutions for marketing, content creation and task automation",
           technologies: ["AI/ML", "Python", "Marketing Automation"],
-          image: "/images/placeholders/ai-marketing.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=AI+Marketing"
         },
         {
           name: "GDPR Compliance Check",
           description: "Creating an AI-based GDPR compliance check for websites",
           technologies: ["AI/ML", "Web Scraping", "Compliance", "Python"],
-          image: "/images/placeholders/gdpr-check.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=GDPR+Compliance"
         }
       ]
     },
@@ -103,7 +105,7 @@ export const resumeData = {
           name: "Automated Robot Palletizing Solution",
           description: "Development of an automated robot palletizing solution with machine learning for object recognition, gripping and trajectory planning",
           technologies: ["Machine Learning", "Computer Vision", "Robotics", "Python", "ROS2"],
-          image: "/images/placeholders/palletizing.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=Robot+Palletizing"
         }
       ]
     },
@@ -119,7 +121,7 @@ export const resumeData = {
           name: "Automated CAD Model Creation",
           description: "Reverse engineering: Automated creation of CAD models from measurement data using machine learning and Python software",
           technologies: ["Machine Learning", "CAD", "Python", "3D Modeling", "Reverse Engineering"],
-          image: "/images/placeholders/cad-automation.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=CAD+Automation"
         }
       ]
     },
@@ -135,19 +137,19 @@ export const resumeData = {
           name: "Nutrition Assistant Chatbot",
           description: "Creation of a chatbot as a nutrition assistant for fitbynature.ai",
           technologies: ["AI/ML", "Chatbot", "Python", "NLP"],
-          image: "/images/placeholders/nutrition-chatbot.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=Nutrition+Chatbot"
         },
         {
           name: "Website Development",
           description: "Design and development of websites for various private clients: @CertoFotografie and Favolivia",
           technologies: ["Vue.js", "HTML/CSS", "JavaScript", "Web Design"],
-          image: "/images/placeholders/website-dev.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=Website+Development"
         },
         {
           name: "Social Media Management",
           description: "Social media content management and Facebook ad creation for @decoration.artistou and @parabio2020",
           technologies: ["Social Media", "Marketing", "Content Creation", "Facebook Ads"],
-          image: "/images/placeholders/social-media.jpg"
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=Social+Media+Management"
         }
       ]
     }
@@ -318,7 +320,7 @@ export const resumeData = {
       name: "Bionic Hand for Robots",
       description: "Development of a bionic hand for robots in collaboration with the University of Rostock",
       technologies: ["Robotics", "Biomechanics", "3D Printing", "Control Systems"],
-      image: "/images/placeholders/bionic-hand.jpg",
+          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=Bionic+Hand+Project",
       featured: true
     }
   ]
