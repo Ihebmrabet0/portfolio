@@ -1,4 +1,6 @@
 import woodbotImage from '../images/Woodbot.jpg'
+import blastmanImage from '../images/Blastman.jpg'
+import poseEstimationImage from '../images/6D.png'
 
 export const resumeData = {
   personal: {
@@ -32,7 +34,7 @@ export const resumeData = {
           name: "Blastman Robot Compiler",
           description: "Design and development of a compiler and specialized development environment using RoboDK for translating and offline programming of Blastman robot programs. The goal was to significantly reduce commissioning times and simplify programming for specialist personnel (for Liebherr).",
           technologies: ["RoboDK", "KRL", "Python", "C++"],
-          image: "src/assets/images/Blastman.jpg"
+          image: blastmanImage
         },
         {
           name: "Penelope - Pipe Fitting System",
@@ -67,7 +69,7 @@ export const resumeData = {
           name: "6D Pose Estimation AI Model",
           description: "Development of an AI model for 6D pose estimation using RGB-D measurement data for custom Objects",
           technologies: ["PyTorch", "Computer Vision", "RGB-D", "AI/ML", "Python"],
-          image: "src/assets/images/6D.png"
+          image: poseEstimationImage
         }
       ]
     },

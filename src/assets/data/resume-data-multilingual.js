@@ -1,5 +1,7 @@
 import weckerImage from '../images/Wecker.jpg'
 import woodbotImage from '../images/Woodbot.jpg'
+import poseEstimationImage from '../images/6D.png'
+import blastmanImage from '../images/Blastman.jpg'
 
 export const resumeData = {
   personal: {
@@ -63,7 +65,7 @@ export const resumeData = {
             de: "Entwurf und Entwicklung eines Compilers und spezialisierten Entwicklungsumgebung mit RoboDK zur Übersetzung und Offline-Programmierung von Blastman-Roboterprogrammen. Das Ziel war es, Inbetriebnahmezeiten erheblich zu reduzieren und die Programmierung für Fachpersonal zu vereinfachen (für Liebherr)."
           },
           technologies: ["RoboDK", "KRL", "Python", "C++"],
-          image: "src/assets/images/Blastman.jpg"
+          image: blastmanImage
         },
         {
           name: {
@@ -137,7 +139,7 @@ export const resumeData = {
             de: "Entwicklung eines KI-gestützten Pose-Schätzungssystems für industrielle Anwendungen. Implementierung von Computer-Vision-Algorithmen und Machine-Learning-Modellen zur präzisen Erkennung und Verfolgung menschlicher Posen in Fertigungsumgebungen."
           },
           technologies: ["Python", "PyTorch", "OpenCV", "Computer Vision", "Machine Learning"],
-          image: "src/assets/images/6D.png"
+          image: poseEstimationImage
         }
       ]
     },
