@@ -205,7 +205,7 @@ const { target: languagesRef, hasIntersected } = useIntersectionObserver({
 }
 
 .language-level {
-  background: #667eea;
+  background: #1D1D1F;
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
@@ -249,7 +249,7 @@ const { target: languagesRef, hasIntersected } = useIntersectionObserver({
 
 .proficiency-fill {
   height: 100%;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: linear-gradient(90deg, #1D1D1F, #424245);
   border-radius: 4px;
   transition: width 1s ease-out;
   position: relative;
@@ -339,7 +339,7 @@ const { target: languagesRef, hasIntersected } = useIntersectionObserver({
 }
 
 .cert-date {
-  background: #667eea;
+  background: #1D1D1F;
   color: white;
   padding: 0.2rem 0.6rem;
   border-radius: 12px;
@@ -411,7 +411,7 @@ const { target: languagesRef, hasIntersected } = useIntersectionObserver({
 }
 
 .achievement-category {
-  background: #48bb78;
+  background: #424245;
   color: white;
   padding: 0.2rem 0.6rem;
   border-radius: 12px;

@@ -117,7 +117,7 @@ const { target: educationRef, hasIntersected } = useIntersectionObserver({
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, #667eea, #764ba2);
+  background: linear-gradient(to bottom, #1D1D1F, #424245);
 }
 
 .education-item {
@@ -157,18 +157,18 @@ const { target: educationRef, hasIntersected } = useIntersectionObserver({
   height: 12px;
   border-radius: 50%;
   border: 3px solid white;
-  box-shadow: 0 0 0 3px #667eea;
+  box-shadow: 0 0 0 3px #1D1D1F;
 }
 
 .marker-dot.current {
-  background: #667eea;
-  box-shadow: 0 0 0 3px #667eea, 0 0 0 6px rgba(102, 126, 234, 0.3);
+  background: #1D1D1F;
+  box-shadow: 0 0 0 3px #1D1D1F, 0 0 0 6px rgba(29, 29, 31, 0.3);
   animation: pulse 2s infinite;
 }
 
 .marker-dot.completed {
-  background: #48bb78;
-  box-shadow: 0 0 0 3px #48bb78;
+  background: #424245;
+  box-shadow: 0 0 0 3px #424245;
 }
 
 @keyframes pulse {
@@ -181,7 +181,7 @@ const { target: educationRef, hasIntersected } = useIntersectionObserver({
   top: -1.5rem;
   left: 50%;
   transform: translateX(-50%);
-  background: #667eea;
+  background: #1D1D1F;
   color: white;
   padding: 0.2rem 0.5rem;
   border-radius: 10px;
@@ -235,7 +235,7 @@ const { target: educationRef, hasIntersected } = useIntersectionObserver({
 }
 
 .period {
-  color: #667eea;
+  color: #1D1D1F;
   font-weight: 500;
 }
 
@@ -251,7 +251,7 @@ const { target: educationRef, hasIntersected } = useIntersectionObserver({
   padding: 1rem;
   background: #f7fafc;
   border-radius: 8px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #1D1D1F;
 }
 
 .thesis-title,
@@ -275,7 +275,7 @@ const { target: educationRef, hasIntersected } = useIntersectionObserver({
 }
 
 .achievement-info {
-  border-left-color: #48bb78;
+  border-left-color: #424245;
   background: linear-gradient(135deg, rgba(72, 187, 120, 0.05), rgba(72, 187, 120, 0.1));
 }
 

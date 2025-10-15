@@ -115,13 +115,53 @@ if (isPenelopeProject()) {
 
 <style scoped>
 .project-card {
-  background: white;
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 20px 10px rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all var(--transition-spring);
   opacity: 0;
   transform: translateY(30px);
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  z-index: 1;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+  z-index: 1;
 }
 
 .project-card.animate {
@@ -131,7 +171,12 @@ if (isPenelopeProject()) {
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 20px 10px rgba(255, 255, 255, 1);
+  border-color: var(--primary-color);
 }
 
 .project-image {
@@ -145,12 +190,14 @@ if (isPenelopeProject()) {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all var(--transition-normal);
 }
 
 .project-card:hover .project-overlay {
@@ -165,10 +212,11 @@ if (isPenelopeProject()) {
 .project-links-below {
   display: flex;
   gap: 1rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid #E5E5EA;
   justify-content: center;
 }
 
@@ -176,38 +224,42 @@ if (isPenelopeProject()) {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #667eea;
+  padding: 0.8rem 1.5rem;
+  background: #1D1D1F;
   color: white;
   text-decoration: none;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
 }
 
 .project-link:hover {
-  background: #5a67d8;
+  background: #424245;
   transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .project-content {
-  padding: 1.5rem;
+  padding: 2rem;
 }
 
 .project-name {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin-bottom: 1rem;
   line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .project-description {
-  color: #4a5568;
+  color: #424245;
   line-height: 1.6;
-  margin-bottom: 1.2rem;
-  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .project-technologies {
@@ -217,20 +269,23 @@ if (isPenelopeProject()) {
 }
 
 .tech-tag {
-  background: #f7fafc;
-  color: #4a5568;
-  padding: 0.3rem 0.8rem;
+  background: #1D1D1F;
+  color: white;
+  padding: 0.4rem 1rem;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  border: 1px solid #e2e8f0;
-  transition: all 0.3s ease;
+  border: 1px solid #1D1D1F;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
 }
 
 .tech-tag:hover {
-  background: #667eea;
+  background: #424245;
   color: white;
-  border-color: #667eea;
+  border-color: #424245;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 </style>
 

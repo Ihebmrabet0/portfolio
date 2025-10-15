@@ -118,7 +118,7 @@ const { target: experienceRef, hasIntersected } = useIntersectionObserver({
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, #667eea, #764ba2);
+  background: linear-gradient(to bottom, #1D1D1F, #424245);
 }
 
 .timeline-item {
@@ -150,12 +150,12 @@ const { target: experienceRef, hasIntersected } = useIntersectionObserver({
   height: 12px;
   border-radius: 50%;
   border: 3px solid white;
-  box-shadow: 0 0 0 3px #667eea;
+  box-shadow: 0 0 0 3px #1D1D1F;
 }
 
 .marker-dot.current {
-  background: #667eea;
-  box-shadow: 0 0 0 3px #667eea, 0 0 0 6px rgba(102, 126, 234, 0.3);
+  background: #1D1D1F;
+  box-shadow: 0 0 0 3px #1D1D1F, 0 0 0 6px rgba(29, 29, 31, 0.3);
 }
 
 .marker-dot.industry {
@@ -218,7 +218,7 @@ const { target: experienceRef, hasIntersected } = useIntersectionObserver({
 }
 
 .period {
-  color: #667eea;
+  color: #1D1D1F;
   font-weight: 500;
 }
 
@@ -232,7 +232,7 @@ const { target: experienceRef, hasIntersected } = useIntersectionObserver({
   padding: 1.5rem;
   background: #f7fafc;
   border-radius: 8px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #1D1D1F;
 }
 
 .project-name {
@@ -256,7 +256,7 @@ const { target: experienceRef, hasIntersected } = useIntersectionObserver({
 }
 
 .tech-tag {
-  background: #667eea;
+  background: #1D1D1F;
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
@@ -266,7 +266,7 @@ const { target: experienceRef, hasIntersected } = useIntersectionObserver({
 }
 
 .tech-tag:hover {
-  background: #5a67d8;
+  background: #424245;
   transform: translateY(-1px);
 }
 

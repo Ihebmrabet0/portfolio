@@ -63,15 +63,30 @@ const { target: aboutRef, hasIntersected } = useIntersectionObserver({
 
 <style scoped>
 .about-section {
-  padding: 6rem 0;
-  background: #f8fafc;
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
   min-height: 100vh;
+  position: relative;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(29, 29, 31, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(134, 134, 139, 0.02) 0%, transparent 50%);
+  z-index: 1;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .section-header {
@@ -88,18 +103,20 @@ const { target: aboutRef, hasIntersected } = useIntersectionObserver({
 }
 
 .section-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #2d3748;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1D1D1F;
   margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .section-subtitle {
-  font-size: 1.2rem;
-  color: #718096;
-  max-width: 600px;
+  font-size: 1.3rem;
+  color: #424245;
+  max-width: 700px;
   margin: 0 auto;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .about-content {
@@ -121,18 +138,19 @@ const { target: aboutRef, hasIntersected } = useIntersectionObserver({
 }
 
 .about-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #4a5568;
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #424245;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
 }
 
 .key-highlights h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 1rem;
+  color: #1D1D1F;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
 }
 
 .key-highlights ul {
@@ -143,17 +161,19 @@ const { target: aboutRef, hasIntersected } = useIntersectionObserver({
 .key-highlights li {
   position: relative;
   padding-left: 1.5rem;
-  margin-bottom: 0.8rem;
-  color: #4a5568;
+  margin-bottom: 1rem;
+  color: #424245;
   line-height: 1.6;
+  font-size: 1.1rem;
 }
 
 .key-highlights li::before {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #667eea;
+  color: var(--primary-color);
   font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .skills-preview {
@@ -168,11 +188,11 @@ const { target: aboutRef, hasIntersected } = useIntersectionObserver({
 }
 
 .skills-preview h3 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
 }
 
 .skill-categories {
@@ -182,23 +202,70 @@ const { target: aboutRef, hasIntersected } = useIntersectionObserver({
 }
 
 .skill-category {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 20px 10px rgba(255, 255, 255, 1);
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  z-index: 1;
+}
+
+.skill-category::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+  z-index: 1;
 }
 
 .skill-category:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 20px 10px rgba(255, 255, 255, 1);
+  border-color: var(--primary-color);
 }
 
 .skill-category h4 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 0.8rem;
+  color: #1D1D1F;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
 
 .skill-tags {
@@ -208,45 +275,49 @@ const { target: aboutRef, hasIntersected } = useIntersectionObserver({
 }
 
 .skill-tag {
-  background: #667eea;
+  background: var(--primary-color);
   color: white;
-  padding: 0.3rem 0.8rem;
+  padding: 0.4rem 1rem;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
 }
 
 .skill-tag:hover {
-  background: #5a67d8;
-  transform: translateY(-1px);
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .skill-tag.more {
-  background: #e2e8f0;
-  color: #4a5568;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
 }
 
 .skill-tag.more:hover {
-  background: #cbd5e0;
+  background: var(--border-light);
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
   .about-content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
   }
   
   .section-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   
   .skill-categories {
-    gap: 1rem;
+    gap: 1.2rem;
   }
   
   .skill-category {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 }
 </style>

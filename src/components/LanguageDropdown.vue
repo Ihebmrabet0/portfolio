@@ -6,9 +6,6 @@
       @blur="handleBlur"
     >
       <span class="flag">{{ currentLanguage.flag }}</span>
-      <svg class="dropdown-icon" :class="{ 'rotated': isOpen }" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M7 10l5 5 5-5z"/>
-      </svg>
     </button>
     
     <div class="dropdown-menu" v-show="isOpen">
@@ -68,93 +65,173 @@ const handleBlur = (event) => {
 .dropdown-trigger {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.8rem;
-  border: 1px solid #e2e8f0;
-  background: white;
-  border-radius: 8px;
-  font-size: 0.9rem;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-light);
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   min-width: 40px;
+  width: 40px;
+  box-shadow: var(--shadow-sm);
 }
 
 .dropdown-trigger:hover {
-  border-color: #667eea;
-  background: #f8fafc;
+  border-color: var(--border-medium);
+  background: var(--bg-overlay);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
-.dropdown-icon {
-  margin-left: auto;
-  transition: transform 0.3s ease;
+.dropdown-trigger:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
-.dropdown-icon.rotated {
-  transform: rotate(180deg);
-}
 
 .dropdown-menu {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  margin-top: 0.25rem;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-dropdown);
+  margin-top: var(--space-1);
   overflow: hidden;
+  animation: dropdownFadeIn var(--transition-normal) ease-out;
+  min-width: 40px;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 0.8rem;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-3);
   width: 100%;
   text-align: left;
   border: none;
-  background: white;
+  background: transparent;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
+  font-weight: var(--font-normal);
+  color: var(--text-primary);
+  position: relative;
 }
 
 .dropdown-item:hover {
-  background: #f8fafc;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .dropdown-item.active {
-  background: #667eea;
-  color: white;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-weight: var(--font-medium);
+}
+
+.dropdown-item.active:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
 }
 
 .dropdown-item .flag {
-  font-size: 1rem;
+  font-size: var(--text-base);
+  line-height: 1;
 }
 
 .dropdown-item .lang-name {
   flex: 1;
-  font-weight: 500;
+  font-weight: inherit;
 }
 
 .check-icon {
   margin-left: auto;
-  opacity: 0.8;
+  opacity: 0.9;
+  transition: opacity var(--transition-fast);
+}
+
+.dropdown-item.active .check-icon {
+  opacity: 1;
+}
+
+/* Apple-style focus states */
+.dropdown-trigger:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.dropdown-item:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
   .dropdown-trigger {
-    min-width: 100px;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.85rem;
+    min-width: 60px;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
   }
   
   .dropdown-item {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.85rem;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+  }
+  
+  .dropdown-menu {
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+/* Dark mode support (if needed) */
+@media (prefers-color-scheme: dark) {
+  .dropdown-trigger {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: var(--border-dark);
+    color: var(--bg-primary);
+  }
+  
+  .dropdown-trigger:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .dropdown-menu {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: var(--border-dark);
+  }
+  
+  .dropdown-item {
+    color: var(--bg-primary);
+  }
+  
+  .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 </style>

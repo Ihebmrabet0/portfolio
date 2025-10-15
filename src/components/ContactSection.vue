@@ -113,15 +113,30 @@ const { target: contactRef, hasIntersected } = useIntersectionObserver({
 
 <style scoped>
 .contact-section {
-  padding: 6rem 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(29, 29, 31, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(134, 134, 139, 0.02) 0%, transparent 50%);
+  z-index: 1;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .section-header {
@@ -138,18 +153,20 @@ const { target: contactRef, hasIntersected } = useIntersectionObserver({
 }
 
 .section-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1D1D1F;
   margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .section-subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 600px;
+  font-size: 1.3rem;
+  color: #424245;
+  max-width: 700px;
   margin: 0 auto;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .contact-content {
@@ -183,18 +200,46 @@ const { target: contactRef, hasIntersected } = useIntersectionObserver({
 
 .contact-card,
 .form-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before,
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  z-index: 1;
 }
 
 .contact-card:hover,
 .form-card:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.9);
   transform: translateY(-4px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .contact-header h3,
@@ -203,12 +248,12 @@ const { target: contactRef, hasIntersected } = useIntersectionObserver({
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: white;
+  color: #1D1D1F;
 }
 
 .contact-header p,
 .form-card p {
-  color: rgba(255, 255, 255, 0.8);
+  color: #424245;
   margin-bottom: 2rem;
 }
 
@@ -234,19 +279,19 @@ const { target: contactRef, hasIntersected } = useIntersectionObserver({
 .contact-text h4 {
   font-size: 1rem;
   font-weight: 600;
-  color: white;
+  color: #1D1D1F;
   margin-bottom: 0.3rem;
 }
 
 .contact-link,
 .contact-value {
-  color: rgba(255, 255, 255, 0.9);
+  color: #424245;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .contact-link:hover {
-  color: white;
+  color: #1D1D1F;
   text-decoration: underline;
 }
 
@@ -268,24 +313,24 @@ const { target: contactRef, hasIntersected } = useIntersectionObserver({
 }
 
 .btn-primary {
-  background: white;
-  color: #667eea;
+  background: #1D1D1F;
+  color: white;
 }
 
 .btn-primary:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: #424245;
   transform: translateY(-2px);
 }
 
 .btn-secondary {
   background: transparent;
-  color: white;
-  border-color: white;
+  color: #1D1D1F;
+  border-color: #E5E5EA;
 }
 
 .btn-secondary:hover {
-  background: white;
-  color: #667eea;
+  background: #1D1D1F;
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -300,16 +345,16 @@ const { target: contactRef, hasIntersected } = useIntersectionObserver({
 }
 
 .form-note {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.8);
   padding: 1rem;
   border-radius: 8px;
-  border-left: 4px solid rgba(255, 255, 255, 0.3);
+  border-left: 4px solid #E5E5EA;
 }
 
 .form-note p {
   margin: 0;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #424245;
 }
 
 .contact-footer {
@@ -349,20 +394,20 @@ const { target: contactRef, hasIntersected } = useIntersectionObserver({
     box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(72, 187, 120, 0);
+    box-shadow: 0 0 0 10px rgba(29, 29, 31, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(72, 187, 120, 0);
+    box-shadow: 0 0 0 0 rgba(29, 29, 31, 0);
   }
 }
 
 .availability-status span {
   font-weight: 500;
-  color: white;
+  color: #1D1D1F;
 }
 
 .response-time p {
-  color: rgba(255, 255, 255, 0.8);
+  color: #424245;
   margin: 0;
   font-size: 0.9rem;
 }

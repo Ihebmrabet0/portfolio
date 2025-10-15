@@ -32,7 +32,7 @@ export const resumeData = {
           name: "Blastman Robot Compiler",
           description: "Design and development of a compiler and specialized development environment using RoboDK for translating and offline programming of Blastman robot programs. The goal was to significantly reduce commissioning times and simplify programming for specialist personnel (for Liebherr).",
           technologies: ["RoboDK", "KRL", "Python", "C++"],
-          image: "/images/placeholders/blastman-compiler.jpg"
+          image: "src/assets/images/Blastman.jpg"
         },
         {
           name: "Penelope - Pipe Fitting System",
@@ -67,7 +67,7 @@ export const resumeData = {
           name: "6D Pose Estimation AI Model",
           description: "Development of an AI model for 6D pose estimation using RGB-D measurement data for custom Objects",
           technologies: ["PyTorch", "Computer Vision", "RGB-D", "AI/ML", "Python"],
-          image: "https://via.placeholder.com/400x300/667eea/ffffff?text=Pose+Estimation+AI"
+          image: "src/assets/images/6D.png"
         }
       ]
     },

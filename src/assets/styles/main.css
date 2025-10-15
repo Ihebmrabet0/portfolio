@@ -23,7 +23,7 @@ body {
   font-weight: var(--font-normal);
   line-height: var(--leading-normal);
   color: var(--text-primary);
-  background-color: var(--bg-white);
+  background-color: #FFFFFF !important;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
@@ -265,25 +265,33 @@ html {
   pointer-events: none;
 }
 
-/* Animation Classes */
+/* Apple-style Animation Classes */
 .fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .slide-up {
-  animation: slideUp 0.6s ease-out forwards;
+  animation: slideUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .slide-down {
-  animation: slideDown 0.6s ease-out forwards;
+  animation: slideDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .slide-left {
-  animation: slideLeft 0.6s ease-out forwards;
+  animation: slideLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .slide-right {
-  animation: slideRight 0.6s ease-out forwards;
+  animation: slideRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.bounce-in {
+  animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
 /* Make animate class show content by default */
@@ -345,6 +353,35 @@ html {
   }
 }
 
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Responsive Design Helpers */
 @media (max-width: 640px) {
   .container {
@@ -392,13 +429,64 @@ html {
   }
 }
 
+/* Apple-style Micro-interactions */
+.interactive {
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+}
+
+.interactive:active {
+  transform: translateY(0);
+  transition: all 0.1s ease;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-light);
+}
+
+/* Apple-style button hover effects */
+.btn-apple {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.btn-apple::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-apple:hover::before {
+  left: 100%;
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .fade-in,
   .slide-up,
   .slide-down,
   .slide-left,
-  .slide-right {
+  .slide-right,
+  .scale-in,
+  .bounce-in {
     animation: none;
+  }
+  
+  .interactive:hover {
+    transform: none;
   }
 }

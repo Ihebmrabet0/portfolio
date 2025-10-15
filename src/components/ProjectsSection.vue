@@ -99,14 +99,29 @@ const featuredProjects = computed(() => {
 
 <style scoped>
 .projects-section {
-  padding: 6rem 0;
-  background: white;
+  padding: 8rem 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%) !important;
+  position: relative;
+}
+
+.projects-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(29, 29, 31, 0.02) 0%, transparent 50%),
+              radial-gradient(circle at 30% 70%, rgba(134, 134, 139, 0.01) 0%, transparent 50%);
+  z-index: 1;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .section-header {
@@ -123,18 +138,20 @@ const featuredProjects = computed(() => {
 }
 
 .section-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #2d3748;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1D1D1F;
   margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .section-subtitle {
-  font-size: 1.2rem;
-  color: #718096;
-  max-width: 600px;
+  font-size: 1.3rem;
+  color: #424245;
+  max-width: 700px;
   margin: 0 auto;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .projects-grid {
@@ -157,20 +174,21 @@ const featuredProjects = computed(() => {
 }
 
 .more-projects-text {
-  font-size: 1.1rem;
-  color: #4a5568;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
   margin-bottom: 0;
+  font-weight: 400;
 }
 
 .contact-link {
-  color: #667eea;
+  color: var(--primary-color);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  font-weight: 600;
+  transition: all var(--transition-normal);
 }
 
 .contact-link:hover {
-  color: #5a67d8;
+  color: var(--primary-dark);
   text-decoration: underline;
 }
 
