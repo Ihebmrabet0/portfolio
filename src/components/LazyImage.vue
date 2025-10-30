@@ -50,7 +50,7 @@ const hasError = ref(false)
 
 // Use intersection observer to load image when it comes into view
 const { target: containerRef, hasIntersected } = useIntersectionObserver({
-  threshold: 0.1
+  threshold: 0.01
 })
 
 const onImageLoad = () => {

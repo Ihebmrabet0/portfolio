@@ -1,6 +1,15 @@
 import woodbotImage from '../images/Woodbot.jpg'
 import blastmanImage from '../images/Blastman.jpg'
 import poseEstimationImage from '../images/6D.png'
+// Resolve asset URLs (handles spaces/uppercase safely in Vite)
+const cadZUnterREUrl = new URL('../images/CAD Z unter RE.PNG', import.meta.url).href
+const diagramREUrl = new URL('../images/DiagramRE.png', import.meta.url).href
+const flachpunkteREUrl = new URL('../images/Flachpunkte RE.PNG', import.meta.url).href
+const detectionBAUrl = new URL('../images/Detection BA.jpg', import.meta.url).href
+const diagramBAUrl = new URL('../images/Diagram BA.png', import.meta.url).href
+const uiBAUrl = new URL('../images/UI BA.png', import.meta.url).href
+const chatFbnUrl = new URL('../images/Chat FBN.png', import.meta.url).href
+const fbnUrl = new URL('../images/FBN.png', import.meta.url).href
 
 export const resumeData = {
   personal: {
@@ -35,6 +44,25 @@ export const resumeData = {
           description: "Design and development of a compiler and specialized development environment using RoboDK for translating and offline programming of Blastman robot programs. The goal was to significantly reduce commissioning times and simplify programming for specialist personnel (for Liebherr).",
           technologies: ["RoboDK", "KRL", "Python", "C++"],
           image: blastmanImage
+        },
+        {
+          name: "Automated CAD Model Generation from 3D Scan Data",
+          description: "Development of an algorithm for the automated creation of 3D CAD models from point cloud data acquired via laser scanning.[1][2][3] The system analyzes scanned sheet pile profiles, cleans the data, extracts geometric features using machine learning (regression), and then automatically generates a parametric 3D model. The goal is to increase efficiency in the reverse engineering of maritime infrastructure.",
+          technologies: ["Python", "Scikit-learn", "NumPy", "CadQuery", "Machine Learning", "3D Data Processing"],
+          images: [cadZUnterREUrl, diagramREUrl, flachpunkteREUrl]
+        },
+        {
+          name: "Automated Robot Palletizing Solution",
+          description: "Development of an automated solution where a KUKA industrial robot uses a camera and a machine learning model (Mask R-CNN) for object recognition. The system enables the robot to autonomously pick up objects, process them along a pre-taught trajectory recorded via hand-guiding, and then palletize them according to a defined pattern. This project integrates with an existing hand-guiding framework to enhance the capabilities of a standard industrial robot for flexible automation tasks.",
+          technologies: ["KUKA", "ROS2", "Python", "TensorFlow", "Machine Learning", "Computer Vision", "Palletizing"],
+          images: [uiBAUrl, diagramBAUrl, detectionBAUrl]
+        },
+        {
+          name: "Fit by Nature - AI Nutrition Assistant",
+          description: "Freelance development of an AI-powered chatbot on WhatsApp, designed as a personal nutrition assistant. The project involved creating the complete user workflow, including user registration and authentication, a comprehensive onboarding process to determine individual goals and dietary preferences, and the daily delivery of personalized meal plans and advice. The chatbot is engineered to proactively engage with users and provide real-time answers to their nutrition questions.",
+          technologies: ["WhatsApp Business API", "Python", "AI", "Chatbot", "NLP", "LLM", "Cloud Services", "Database"],
+          images: [fbnUrl, chatFbnUrl],
+          url: "https://www.fitbynature.ai/"
         },
         {
           name: "Penelope - Pipe Fitting System",

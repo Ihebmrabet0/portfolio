@@ -9,33 +9,34 @@
         :autoplay="true"
         :muted="true"
       />
-      <LazyImage
-        v-else
-        :src="project.image"
-        :alt="getLocalizedContent(project.name)"
-        aspect-ratio="16/9"
-        :placeholder-text="getLocalizedContent(project.name)"
-      />
-      <div class="project-overlay" v-if="!project.video">
-        <div class="project-links">
-          <a v-if="project.url" :href="project.url" target="_blank" class="project-link">
-            <span>{{ t('common.viewProject') }}</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7V17"/>
-            </svg>
-          </a>
-          <a v-if="project.projectDetails" :href="project.projectDetails" target="_blank" class="project-link">
-            <span>Project Details</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7V17"/>
-            </svg>
-          </a>
-          <a v-if="project.journalArticle" :href="project.journalArticle" target="_blank" class="project-link">
-            <span>Journal Article</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 17L17 7M17 7H7M17 7V17"/>
-            </svg>
-          </a>
+      <div v-else class="image-wrapper" @click="openImageModal(0)" style="cursor: zoom-in;">
+        <LazyImage
+          :src="project.images && project.images.length ? project.images[0] : project.image"
+          :alt="getLocalizedContent(project.name)"
+          aspect-ratio="16/9"
+          :placeholder-text="getLocalizedContent(project.name)"
+        />
+        <div class="project-overlay">
+          <div class="project-links">
+            <a v-if="project.url" :href="project.url" target="_blank" class="project-link" @click.stop>
+              <span>{{ t('common.viewProject') }}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </a>
+            <a v-if="project.projectDetails" :href="project.projectDetails" target="_blank" class="project-link" @click.stop>
+              <span>Project Details</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </a>
+            <a v-if="project.journalArticle" :href="project.journalArticle" target="_blank" class="project-link" @click.stop>
+              <span>Journal Article</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
       
@@ -62,6 +63,26 @@
       </div>
     </div>
     
+    <!-- Light image modal (no dark background) - teleported to body -->
+    <Teleport to="body">
+      <div 
+        v-if="showImageModal"
+        class="image-modal"
+        @click.self="closeImageModal"
+      >
+        <button class="image-modal-close" @click="closeImageModal" aria-label="Close image">
+          ✕
+        </button>
+        <button v-if="totalImages > 1" class="image-nav prev" aria-label="Previous image" @click.stop="prevImage">‹</button>
+        <img 
+          class="image-modal-content"
+          :src="currentImageSrc" 
+          :alt="getLocalizedContent(project.name)"
+        />
+        <button v-if="totalImages > 1" class="image-nav next" aria-label="Next image" @click.stop="nextImage">›</button>
+      </div>
+    </Teleport>
+    
     <div class="project-content">
       <h3 class="project-name">{{ getLocalizedContent(project.name) }}</h3>
       <p class="project-description">{{ getLocalizedContent(project.description) }}</p>
@@ -80,6 +101,7 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useIntersectionObserver } from '../composables/useIntersectionObserver'
 import { useLanguage } from '../composables/useLanguage'
 import LazyImage from './LazyImage.vue'
@@ -111,6 +133,67 @@ if (isPenelopeProject()) {
   console.log('Penelope project data:', props.project)
   console.log('Has video:', !!props.project.video)
 }
+
+// Image lightbox state and handlers
+const showImageModal = ref(false)
+const currentImageIndex = ref(0)
+const totalImages = computed(() => {
+  return Array.isArray(props.project.images) && props.project.images.length > 0
+    ? props.project.images.length
+    : (props.project.image ? 1 : 0)
+})
+const currentImageSrc = computed(() => {
+  if (Array.isArray(props.project.images) && props.project.images.length > 0) {
+    return props.project.images[currentImageIndex.value]
+  }
+  return props.project.image
+})
+
+const openImageModal = (index = 0) => {
+  if (props.project.video) return
+  currentImageIndex.value = index
+  showImageModal.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+const closeImageModal = () => {
+  showImageModal.value = false
+  document.body.style.overflow = ''
+}
+
+const onKeydown = (e) => {
+  if (e.key === 'Escape' && showImageModal.value) {
+    closeImageModal()
+  }
+  if ((e.key === 'ArrowRight' || e.key === 'Right') && showImageModal.value) {
+    nextImage()
+  }
+  if ((e.key === 'ArrowLeft' || e.key === 'Left') && showImageModal.value) {
+    prevImage()
+  }
+}
+
+const nextImage = () => {
+  if (totalImages.value <= 1) return
+  currentImageIndex.value = (currentImageIndex.value + 1) % totalImages.value
+}
+
+const prevImage = () => {
+  if (totalImages.value <= 1) return
+  currentImageIndex.value = (currentImageIndex.value - 1 + totalImages.value) % totalImages.value
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeydown)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeydown)
+  // Ensure body scrolling is restored if component unmounts while modal is open
+  if (showImageModal.value) {
+    document.body.style.overflow = ''
+  }
+})
 </script>
 
 <style scoped>
@@ -184,6 +267,11 @@ if (isPenelopeProject()) {
   overflow: hidden;
 }
 
+.image-wrapper {
+  position: relative;
+  display: block;
+}
+
 .project-overlay {
   position: absolute;
   top: 0;
@@ -198,10 +286,12 @@ if (isPenelopeProject()) {
   justify-content: center;
   opacity: 0;
   transition: all var(--transition-normal);
+  pointer-events: none; /* allow clicks to pass through when hidden */
 }
 
-.project-card:hover .project-overlay {
+.image-wrapper:hover .project-overlay {
   opacity: 1;
+  pointer-events: auto; /* enable links when visible */
 }
 
 .project-links {
@@ -219,6 +309,67 @@ if (isPenelopeProject()) {
   border-top: 1px solid #E5E5EA;
   justify-content: center;
 }
+
+/* Lightbox styles */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.96); /* light, not dark */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.image-modal-content {
+  max-width: 92vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #1D1D1F;
+  color: #fff;
+  font-size: 20px;
+  line-height: 44px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.image-modal-close:hover {
+  background: #424245;
+}
+
+.image-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #1D1D1F;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-nav.prev { left: 1rem; }
+.image-nav.next { right: 1rem; }
 
 .project-link {
   display: flex;

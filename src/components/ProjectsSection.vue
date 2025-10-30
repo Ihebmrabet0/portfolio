@@ -53,6 +53,7 @@ const featuredProjects = computed(() => {
           description: project.description,
           technologies: project.technologies,
           image: project.image,
+          images: project.images || null,
           url: project.url || null,
           video: project.video || null,
           projectDetails: project.projectDetails || null,
@@ -71,6 +72,7 @@ const featuredProjects = computed(() => {
         description: project.description,
         technologies: project.technologies,
         image: project.image,
+        images: project.images || null,
         url: project.url || null,
         video: project.video || null,
         projectDetails: project.projectDetails || null,
@@ -92,8 +94,8 @@ const featuredProjects = computed(() => {
     console.log('Penelope project found:', penelopeProject)
   }
   
-  // Return first 6 projects
-  return projects.slice(0, 6)
+  // Return all projects (no limit)
+  return projects
 })
 </script>
 

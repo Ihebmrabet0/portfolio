@@ -2,6 +2,15 @@ import weckerImage from '../images/Wecker.jpg'
 import woodbotImage from '../images/Woodbot.jpg'
 import poseEstimationImage from '../images/6D.png'
 import blastmanImage from '../images/Blastman.jpg'
+// Resolve asset URLs (handles spaces/uppercase safely in Vite)
+const cadZUnterREUrl = new URL('../images/CAD Z unter RE.PNG', import.meta.url).href
+const diagramREUrl = new URL('../images/DiagramRE.png', import.meta.url).href
+const flachpunkteREUrl = new URL('../images/Flachpunkte RE.PNG', import.meta.url).href
+const detectionBAUrl = new URL('../images/Detection BA.jpg', import.meta.url).href
+const diagramBAUrl = new URL('../images/Diagram BA.png', import.meta.url).href
+const uiBAUrl = new URL('../images/UI BA.png', import.meta.url).href
+const chatFbnUrl = new URL('../images/Chat FBN.png', import.meta.url).href
+const fbnUrl = new URL('../images/FBN.png', import.meta.url).href
 
 export const resumeData = {
   personal: {
@@ -66,6 +75,43 @@ export const resumeData = {
           },
           technologies: ["RoboDK", "KRL", "Python", "C++"],
           image: blastmanImage
+        },
+        {
+          name: {
+            en: "Automated CAD Model Generation from 3D Scan Data",
+            de: "Automatisierte CAD-Modellerstellung aus 3D-Scandaten"
+          },
+          description: {
+            en: "Development of an algorithm for the automated creation of 3D CAD models from point cloud data acquired via laser scanning. The system analyzes scanned sheet pile profiles, cleans the data, extracts geometric features using machine learning, and then automatically generates a parametric 3D model. The goal is to increase efficiency in the reverse engineering of maritime infrastructure.",
+            de: "Entwicklung eines Algorithmus zur automatisierten Erstellung von 3D-CAD-Modellen aus Punktwolkendaten, die durch Laserscanning gewonnen wurden. Das System analysiert gescannte Spundwandprofile, bereinigt die Daten, extrahiert mittels maschinellen Lernens geometrische Merkmale und generiert daraus vollautomatisch ein parametrisches 3D-Modell. Ziel ist die Effizienzsteigerung im Reverse Engineering für maritime Infrastrukturen."
+          },
+          technologies: ["Python", "Scikit-learn", "NumPy", "CadQuery", "Machine Learning", "3D Data Processing"],
+          images: [cadZUnterREUrl, diagramREUrl, flachpunkteREUrl]
+        },
+        {
+          name: {
+            en: "Automated Robot Palletizing Solution",
+            de: "Automatisierte Roboter-Palettierungslösung"
+          },
+          description: {
+            en: "Development of an automated solution where a KUKA industrial robot uses a camera and a machine learning model (Mask R-CNN) for object recognition. The system enables the robot to autonomously pick up objects, process them along a pre-taught trajectory recorded via hand-guiding, and then palletize them according to a defined pattern. This project integrates with an existing hand-guiding framework to enhance the capabilities of a standard industrial robot for flexible automation tasks.",
+            de: "Entwicklung einer automatisierten Lösung, bei der ein KUKA-Industrieroboter eine Kamera und ein Machine-Learning-Modell (Mask R-CNN) zur Objekterkennung nutzt. Das System befähigt den Roboter, Objekte selbstständig zu greifen, sie entlang einer zuvor per Handführung eingelernten Bewegungsbahn zu bearbeiten und anschließend nach einem definierten Muster zu palettieren. Dieses Projekt integriert sich in ein bestehendes Handführungssystem, um die Funktionalität eines Standard-Industrieroboters für flexible Automatisierungsaufgaben zu erweitern."
+          },
+          technologies: ["KUKA", "ROS2", "Python", "TensorFlow", "Machine Learning", "Computer Vision", "Palletizing"],
+          images: [uiBAUrl, diagramBAUrl, detectionBAUrl]
+        },
+        {
+          name: {
+            en: "Fit by Nature - AI Nutrition Assistant",
+            de: "Fit by Nature - KI-Ernährungsassistent"
+          },
+          description: {
+            en: "Freelance development of an AI-powered chatbot on WhatsApp, designed as a personal nutrition assistant. The project involved creating the complete user workflow, including user registration and authentication, a comprehensive onboarding process to determine individual goals and dietary preferences, and the daily delivery of personalized meal plans and advice. The chatbot is engineered to proactively engage with users and provide real-time answers to their nutrition questions.",
+            de: "Freelancing-Projekt zur Entwicklung eines KI-gestützten Chatbots als personalisierter Ernährungsassistent auf WhatsApp. Das Projekt umfasste die Konzeption und Umsetzung des gesamten Workflows: von der Registrierung und Authentifizierung der Nutzer über ein detailliertes Onboarding zur Erfassung der Ziele und Vorlieben bis hin zur täglichen, automatisierten Übermittlung von individuellen Ernährungsplänen und Ratschlägen. Der Chatbot ist darauf ausgelegt, proaktiv zu unterstützen und auf Nutzerfragen in Echtzeit zu reagieren."
+          },
+          technologies: ["WhatsApp Business API", "Python", "AI", "Chatbot", "NLP", "LLM", "Cloud Services", "Database"],
+          images: [fbnUrl, chatFbnUrl],
+          url: "https://www.fitbynature.ai/"
         },
         {
           name: {
