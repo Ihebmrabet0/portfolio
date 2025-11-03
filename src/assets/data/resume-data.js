@@ -237,7 +237,7 @@ export const resumeData = {
       "ROS2", "MuJoCo", "RoboDK", "Unity", "KUKA (KRL)", "Universal Robots"
     ],
     "Programming": [
-      "Python", "C++", "C", "JavaScript", "SQL", "Pascal", "OpenCV", "REST", "MQTT", "TCP/IP", "Git", "Linux"
+      "Python", "C++", "C", "JavaScript", "SQL", "Pascal", "QT", "OpenCV", "REST", "MQTT", "TCP/IP", "Git", "Linux"
     ],
     "AI & Machine Learning": [
       "PyTorch", "Scikit-learn", "Jetson/JetPack", "LLMs", "Unsloth", "Isaac-GR00T"
