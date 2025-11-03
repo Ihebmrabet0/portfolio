@@ -4,16 +4,41 @@ import { translations } from '../assets/data/translations'
 // Get language from URL or default to 'en'
 const getLanguageFromURL = () => {
   const path = window.location.pathname
-  if (path.startsWith('/de')) return 'de'
-  if (path.startsWith('/en')) return 'en'
+  // Remove base path for GitHub Pages (e.g., /portfolio)
+  const pathWithoutBase = path.replace(/^\/[^/]+/, '') || '/'
+  
+  if (pathWithoutBase.startsWith('/de')) return 'de'
+  if (pathWithoutBase.startsWith('/en')) return 'en'
+  
+  // Also check the full path in case we're at root
+  if (path.includes('/de')) return 'de'
+  if (path.includes('/en')) return 'en'
+  
   return 'en' // default
 }
 
 // Set language in URL
 const setLanguageInURL = (lang) => {
   const currentPath = window.location.pathname
-  const newPath = currentPath.replace(/^\/(de|en)/, '') || '/'
-  const newURL = `/${lang}${newPath}`
+  const basePath = import.meta.env.BASE_URL || '/'
+  
+  // Remove existing language prefix
+  let pathWithoutLang = currentPath.replace(/\/(de|en)(\/|$)/, '/')
+  
+  // Remove double slashes
+  pathWithoutLang = pathWithoutLang.replace(/\/+/g, '/')
+  
+  // Ensure we keep the base path
+  let newPath = pathWithoutLang
+  if (!newPath.startsWith(basePath)) {
+    newPath = basePath + pathWithoutLang.replace(/^\//, '')
+  }
+  
+  // Add language prefix after base path
+  const basePathClean = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath
+  const pathAfterBase = newPath.replace(basePathClean, '')
+  const newURL = `${basePathClean}/${lang}${pathAfterBase}`
+  
   window.history.replaceState({}, '', newURL)
 }
 
